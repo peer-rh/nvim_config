@@ -56,9 +56,11 @@ return {
             { 'hrsh7th/cmp-nvim-lua' },         -- Optional
             { 'L3MON4D3/LuaSnip' },             -- Required
             { 'rafamadriz/friendly-snippets' }, -- Optional
+            { 'onsnails/lspkind.nvim' }
         },
         config = function()
             -- Here is where you configure the autocompletion settings.
+            local lspkind = require('lspkind')
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_cmp()
 
@@ -66,7 +68,9 @@ return {
             local cmp = require('cmp')
 
             cmp.setup({
-                formatting = lsp_zero.cmp_format(),
+                formatting = {
+                    format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
+                },
                 mapping = cmp.mapping.preset.insert({
                     ['<C-j>'] = cmp.mapping.select_next_item(),
                     ['<C-k>'] = cmp.mapping.select_prev_item(),
@@ -138,5 +142,15 @@ return {
             vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
             vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
         end,
+    },
+    {
+        'windwp/nvim-ts-autotag',
+        config = function()
+            require 'nvim-treesitter.configs'.setup {
+                autotag = {
+                    enable = true,
+                }
+            }
+        end
     }
 }
