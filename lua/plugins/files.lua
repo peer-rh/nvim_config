@@ -3,34 +3,24 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
-          "nvim-lua/plenary.nvim",
-          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-          "MunifTanjim/nui.nvim",
-          -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
         config = true,
-        keys =  {
-            {"<leader>e", "<cmd>Neotree toggle<cr>", desc="Explorer"}
-        },
-    },
-    {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-        config = true,
-        keys =  {
-            {"<leader>e", "<cmd>NvimTreeToggle<cr>", desc="Explorer"}
+        keys = {
+            { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Explorer" }
         },
     },
     {
         "ThePrimeagen/harpoon",
-        config = function () 
+        config = function()
             local ui = require("harpoon.ui")
             require("which-key").register({
-                    ["<leader>h"] = {
+                ["<leader>h"] = {
                     "+harpoon",
-                    a = {  require("harpoon.mark").add_file, "Add File" },
+                    a = { require("harpoon.mark").add_file, "Add File" },
                     e = { ui.toggle_quick_menu, "Menu" },
                     h = { function() ui.nav_file(1) end, "First Buffer" },
                     j = { function() ui.nav_file(2) end, "Second Buffer" },
@@ -41,3 +31,4 @@ return {
         end,
     },
 }
+
