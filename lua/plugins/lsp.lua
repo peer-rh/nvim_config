@@ -56,7 +56,7 @@ return {
             { 'hrsh7th/cmp-nvim-lua' },         -- Optional
             { 'L3MON4D3/LuaSnip' },             -- Required
             { 'rafamadriz/friendly-snippets' }, -- Optional
-            { 'onsnails/lspkind.nvim' }
+            { 'onsnails/lspkind.nvim' },
         },
         config = function()
             -- Here is where you configure the autocompletion settings.
@@ -69,7 +69,10 @@ return {
 
             cmp.setup({
                 formatting = {
-                    format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
+                    format = lspkind.cmp_format({
+                        with_text = false,
+                        maxwidth = 50,
+                    })
                 },
                 mapping = cmp.mapping.preset.insert({
                     ['<C-j>'] = cmp.mapping.select_next_item(),
@@ -156,5 +159,11 @@ return {
                 }
             }
         end
-    }
+    },
+    {
+        'simrat39/symbols-outline.nvim',
+        event = { 'VeryLazy' },
+        config = true,
+        keys = { { '<leader>ce', "<cmd>SymbolsOutline<cr>", desc = "Symbols" } },
+    },
 }

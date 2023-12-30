@@ -30,7 +30,6 @@ return {
                 end)
             end
 
-            -- Trash the selections (visual mode)
             local function trash_visual(state, selected_nodes)
                 local paths_to_trash = {}
                 for _, node in ipairs(selected_nodes) do
@@ -54,7 +53,7 @@ return {
                 close_if_last_window = true,
                 enable_git_status = false,
                 enable_diagnostics = true,
-                sources = { "filesystem", "buffer", "document_symbols", "git_status" },
+                sources = { "filesystem", "buffer", "git_status" },
                 filesystem = {
                     commands = {
                         delete = trash,
@@ -65,8 +64,7 @@ return {
             })
         end,
         keys = {
-            { "<leader>e",  "<cmd>Neotree toggle reveal<cr>",                  desc = "Explorer" },
-            { "<leader>ce", "<cmd>Neotree toggle document_symbols reveal<cr>", desc = "Symbols" }
+            { "<leader>e", "<cmd>Neotree toggle reveal<cr>", desc = "Explorer" },
         },
     },
     {
