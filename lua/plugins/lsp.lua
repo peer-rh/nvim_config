@@ -47,7 +47,7 @@ return {
     -- Autocompletion
     {
         'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
+        event = { 'VeryLazy', 'InsertEnter' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },         -- Required
             { 'hrsh7th/cmp-buffer' },           -- Optional
@@ -116,6 +116,8 @@ return {
     },
     {
         'github/copilot.vim',
+        lazy = true,
+        event = { 'InsertEnter', 'VeryLazy' },
         config = function()
             vim.cmd([[Copilot enable]])
         end
@@ -145,6 +147,8 @@ return {
     },
     {
         'windwp/nvim-ts-autotag',
+        lazy = true,
+        event = 'InsertEnter',
         config = function()
             require 'nvim-treesitter.configs'.setup {
                 autotag = {

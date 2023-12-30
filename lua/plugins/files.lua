@@ -13,10 +13,12 @@ return {
                 close_if_last_window = true,
                 enable_git_status = false,
                 enable_diagnostics = true,
+                sources = { "filesystem", "buffer", "document_symbols", "git_status" }
             })
         end,
         keys = {
-            { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Explorer" }
+            { "<leader>e",  "<cmd>Neotree toggle<cr>",                  desc = "Explorer" },
+            { "<leader>ce", "<cmd>Neotree toggle document_symbols<cr>", desc = "Symbols" }
         },
     },
     {

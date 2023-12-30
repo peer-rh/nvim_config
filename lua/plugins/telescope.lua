@@ -18,7 +18,8 @@ return {
                     "+project",
                     b = { builtin.buffers, "Find Open Buffer" },
                     f = { builtin.find_files, "Find File" },
-                    s = { builtin.live_grep, "Grep" }
+                    s = { builtin.live_grep, "Grep" },
+                    h = { builtin.oldfiles, "History" }
                 },
                 c = {
                     D = { builtin.diagnostics, "Diagnostics" },
@@ -31,4 +32,3 @@ return {
         end
     },
 }
-
