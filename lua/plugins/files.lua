@@ -23,6 +23,8 @@ return {
     },
     {
         "ThePrimeagen/harpoon",
+        lazy = true,
+        event = { "VeryLazy" },
         config = function()
             local ui = require("harpoon.ui")
             require("which-key").register({

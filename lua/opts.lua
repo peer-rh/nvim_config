@@ -1,9 +1,9 @@
 vim.opt.guicursor = ""
 
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>w" , "<cmd>w<cr>", {desc="Save"})
-vim.keymap.set("n", "<leader>q" , "<cmd>q<cr>", {desc="Quit"})
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], {desc="Copy to clipboard"})
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to clipboard" })
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
@@ -33,5 +33,3 @@ vim.opt.updatetime = 50
 vim.cmd([[autocmd BufLeave * silent! wall]])
 
 vim.opt.cursorline = true
-
-vim.o.foldcolumn = '0'
