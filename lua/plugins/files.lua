@@ -9,16 +9,64 @@ return {
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
         config = function()
+            local utils = require("neo-tree.utils")
+            local cmds = require("neo-tree.command")
+            local inputs = require("neo-tree.ui.inputs")
+
+            local function trash(state)
+                local tree = state.tree
+                local node = tree:get_node()
+                if node.type == "message" then
+                    return
+                end
+                local _, name = utils.split_path(node.path)
+                local msg = string.format("Are you sure you want to trash '%s'?", name)
+                inputs.confirm(msg, function(confirmed)
+                    if not confirmed then
+                        return
+                    end
+                    vim.api.nvim_command("silent !trash -F " .. node.path)
+                    require("neo-tree.sources.manager").refresh(state.name)
+                end)
+            end
+
+            -- Trash the selections (visual mode)
+            local function trash_visual(state, selected_nodes)
+                local paths_to_trash = {}
+                for _, node in ipairs(selected_nodes) do
+                    if node.type ~= 'message' then
+                        table.insert(paths_to_trash, node.path)
+                    end
+                end
+                local msg = "Are you sure you want to trash " .. #paths_to_trash .. " items?"
+                inputs.confirm(msg, function(confirmed)
+                    if not confirmed then
+                        return
+                    end
+                    for _, path in ipairs(paths_to_trash) do
+                        vim.api.nvim_command("silent !trash -F " .. path)
+                    end
+                    require("neo-tree.sources.manager").refresh(state.name)
+                end)
+            end
+
             require("neo-tree").setup({
                 close_if_last_window = true,
                 enable_git_status = false,
                 enable_diagnostics = true,
-                sources = { "filesystem", "buffer", "document_symbols", "git_status" }
+                sources = { "filesystem", "buffer", "document_symbols", "git_status" },
+                filesystem = {
+                    commands = {
+                        delete = trash,
+                        delete_visual = trash_visual,
+                    },
+                },
+
             })
         end,
         keys = {
-            { "<leader>e",  "<cmd>Neotree toggle<cr>",                  desc = "Explorer" },
-            { "<leader>ce", "<cmd>Neotree toggle document_symbols<cr>", desc = "Symbols" }
+            { "<leader>e",  "<cmd>Neotree toggle reveal<cr>",                  desc = "Explorer" },
+            { "<leader>ce", "<cmd>Neotree toggle document_symbols reveal<cr>", desc = "Symbols" }
         },
     },
     {
