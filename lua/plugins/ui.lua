@@ -27,11 +27,11 @@ return {
                     section_separators = '',
                 },
                 sections = {
-                    lualine_a = { 'mode' },
+                    lualine_a = { 'filename' },
                     lualine_b = {},
                     lualine_y = { 'location' },
                     lualine_z = {},
-                    lualine_c = { 'filename' },
+                    lualine_c = {},
                     lualine_x = { 'diagnostics', 'filetype' },
                 },
                 inactive_sections = {
