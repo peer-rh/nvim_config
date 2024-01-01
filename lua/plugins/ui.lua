@@ -48,6 +48,7 @@ return {
         end
     },
     {
+        enabled = false,
         'goolord/alpha-nvim',
         config = function()
             local alpha = require("alpha")
