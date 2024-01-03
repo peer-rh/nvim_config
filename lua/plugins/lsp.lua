@@ -56,7 +56,7 @@ return {
             { 'hrsh7th/cmp-nvim-lua' },         -- Optional
             { 'L3MON4D3/LuaSnip' },             -- Required
             { 'rafamadriz/friendly-snippets' }, -- Optional
-            { 'onsnails/lspkind.nvim' },
+            { 'onsails/lspkind.nvim' },
         },
         config = function()
             -- Here is where you configure the autocompletion settings.
